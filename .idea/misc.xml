@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/drawable/custom_parallelogram.xml" value="0.1" />
         <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/drawable/custorm_background.xml" value="0.1" />
         <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/drawable/dash_background.xml" value="0.1" />
         <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/drawable/ic_back.xml" value="0.1" />
@@ -12,8 +13,8 @@
         <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/drawable/two_click_off_background.xml" value="0.1" />
         <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/drawable/two_click_on_background.xml" value="0.1" />
         <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/drawable/yellow_background.xml" value="0.1" />
-        <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/layout/activity_main.xml" value="0.19921875" />
-        <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/layout/image_container.xml" value="0.2234375" />
+        <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/layout/image_container.xml" value="0.22" />
         <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/layout/rv_by_rate_item.xml" value="0.2234375" />
         <entry key="..\:/Users/abbp1/StudioProjects/UIDesignTest/app/src/main/res/layout/rv_by_room_item.xml" value="0.2234375" />
       </map>

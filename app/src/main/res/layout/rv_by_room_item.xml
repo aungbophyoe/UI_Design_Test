@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:src="@drawable/ic_default_image"
+            android:src="@drawable/sample4"
             android:id="@+id/ivImage"
             android:scaleType="fitXY"
             app:layout_constraintTop_toTopOf="parent"

@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,13 +16,17 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.aungbophyoe.space.uidesigntest.databinding.ActivityMainBinding
 import com.github.hariprasanths.bounceview.BounceView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
     private var _binding : ActivityMainBinding? = null
     private val binding get() = _binding
     private val imageList = arrayListOf(
-        R.drawable.sample1,R.drawable.sample3,R.drawable.sample1,R.drawable.sample4
+        R.drawable.sample1,R.drawable.sample3,R.drawable.sample1,R.drawable.sample2,R.drawable.sample4
     )
     private val handler : Handler by lazy {
         Handler(Looper.myLooper()!!)
@@ -33,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = _binding!!.root
         setContentView(view)
+        val anim: Animation? = AnimationUtils.loadAnimation(this, R.anim.anim_left_slide_in)
         binding!!.apply {
             adapter = ImageAdapter(imageList,viewPager)
             viewPager.adapter = adapter
@@ -56,25 +65,64 @@ class MainActivity : AppCompatActivity() {
                 isNestedScrollingEnabled = false
             }
             recyclerView.adapter!!.notifyDataSetChanged()
-            ivFlag.setOnClickListener {
-                if(isRoom){
-                    isRoom = false
-                    recyclerAdapter.setUpType(isRoom)
-                    recyclerView.adapter = recyclerAdapter
-                    recyclerView.adapter!!.notifyDataSetChanged()
-                    ivFlag.background = ContextCompat.getDrawable(this@MainActivity,R.drawable.byrate_background)
-                }else{
-                    isRoom = true
-                    recyclerAdapter.setUpType(isRoom)
-                    recyclerView.adapter = recyclerAdapter
-                    recyclerView.adapter!!.notifyDataSetChanged()
-                    ivFlag.background = ContextCompat.getDrawable(this@MainActivity,R.drawable.byroom_background)
-                }
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(100)
+                ivChatActive.startAnimation(anim)
+                ivChatActive.visibility = View.VISIBLE
+                tvOne.startAnimation(anim)
+                tvOne.visibility = View.VISIBLE
+                delay(500)
+                tvTwo.startAnimation(anim)
+                tvTwo.visibility = View.VISIBLE
+                ivCurrency.startAnimation(anim)
+                ivCurrency.visibility = View.VISIBLE
+                delay(800)
+                ivLocation.startAnimation(anim)
+                ivLocation.visibility = View.VISIBLE
+
             }
-            BounceView.addAnimTo(ivFlag)
+            viewBRoomOn.setOnClickListener {
+                isRoom = true
+                uiChange()
+            }
+            viewBRoomOff.setOnClickListener {
+                isRoom = true
+                uiChange()
+            }
+            viewBROn.setOnClickListener {
+                isRoom = false
+                uiChange()
+            }
+            viewBROff.setOnClickListener {
+                isRoom = false
+                uiChange()
+            }
+            BounceView.addAnimTo(viewBRoomOn)
+            BounceView.addAnimTo(viewBRoomOff)
+            BounceView.addAnimTo(viewBROn)
+            BounceView.addAnimTo(viewBROff)
             BounceView.addAnimTo(tvSeeAll)
             BounceView.addAnimTo(ivCurrency)
             BounceView.addAnimTo(ivChatActive)
+        }
+    }
+
+    private fun uiChange(){
+        binding!!.apply {
+            if(isRoom){
+                viewBRoomOff.visibility = View.GONE
+                viewBRoomOn.visibility = View.VISIBLE
+                viewBROn.visibility = View.GONE
+                viewBROff.visibility = View.VISIBLE
+            }else{
+                viewBRoomOn.visibility = View.GONE
+                viewBRoomOff.visibility = View.VISIBLE
+                viewBROff.visibility = View.GONE
+                viewBROn.visibility = View.VISIBLE
+            }
+            recyclerAdapter.setUpType(isRoom)
+            recyclerView.adapter = recyclerAdapter
+            recyclerView.adapter!!.notifyDataSetChanged()
         }
     }
 
